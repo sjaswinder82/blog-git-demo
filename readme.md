@@ -1,6 +1,6 @@
 # BLOG DEMO for PHP
 
-### Create for Smart 
+## Create for Smart 
 
 ### Login
 ### Register
