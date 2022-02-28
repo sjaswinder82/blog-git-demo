@@ -1,0 +1,9 @@
+{
+    "name": "jaswinder/blog",
+    "autoload": {
+        "psr-4": {
+            "Blog\\": "src/"
+        }
+    },
+    "require": {}
+}
