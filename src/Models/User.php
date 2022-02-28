@@ -15,6 +15,11 @@ class User
     public $email;
     public $password;
 
+    /**
+     * create new user 
+     *
+     * @return user
+     */
     public function create() 
     {
          // connect
