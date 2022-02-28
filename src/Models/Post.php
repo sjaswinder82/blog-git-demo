@@ -6,7 +6,7 @@ use Blog\Config\Database;
 use PDO;
 use PDOException;
 
-class Post 
+class Post extends Model
 {
     public $id;
 
@@ -17,14 +17,8 @@ class Post
     public $userId;
 
     public function save() {
-        // connect
-        $host=Database::HOST_NAME;
-        $dbname=Database::DB_NAME;
-
         try {
-            $dsn="mysql:host=$host;dbname=$dbname";
-            $conn = new PDO($dsn, Database::USERNAME, Database::PASSWORD);
-            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $conn = $this->getConnection();
             // insert sql
             $sql = "Insert into posts(title, content, user_id) values (:title, :content, :userID)";
             $stmt = $conn->prepare($sql);            
@@ -32,6 +26,7 @@ class Post
             $stmt->bindParam(':content', $this->content);            
             $stmt->bindParam(':userID', $this->userId);
             $stmt->execute();
+            $conn->close();
         } catch(PDOException $e) {
             echo "Connection failed: " . $e->getMessage();
         }
@@ -39,14 +34,8 @@ class Post
 
     public function update()
     {
-        // connect
-        $host=Database::HOST_NAME;
-        $dbname=Database::DB_NAME;
-
         try {
-            $dsn="mysql:host=$host;dbname=$dbname";
-            $conn = new PDO($dsn, Database::USERNAME, Database::PASSWORD);
-            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $conn = $this->getConnection();
             // insert sql
             $sql = "update posts set title=:title, content=:content, user_id=:userID where id=:id";
             $stmt = $conn->prepare($sql);            
