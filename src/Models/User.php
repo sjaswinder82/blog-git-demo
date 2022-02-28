@@ -16,9 +16,9 @@ class User
     public $password;
 
     /**
-     * create a new user
+     * create new user 
      *
-     * @return void
+     * @return user
      */
     public function create() 
     {
